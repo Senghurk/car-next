@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 export default function Home() {
     const { register, handleSubmit } = useForm();
     const [vat, setVat] = React.useState(0);
+    const rate = process.env.NEXT_PUBLIC_VAT_RATE
+    console.debug(process.env)
     const handleForm = (data) => {
         console.debug(data)
         const v = Math.round(data.price * data.rate * 100) / 100
@@ -23,7 +25,7 @@ export default function Home() {
                         </tr>
                         <tr>
                             <td><label>VAT Rate:</label></td>
-                            <td><input type="number" name="rate" value="0.07" readOnly
+                            <td><input type="number" name="rate" value={rate} readOnly
                             {...register("rate",{valueAsNumber:true})}/></td>
                         </tr>
                         <tr>
